@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Route 53 - Setup Domain</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">Route 53 - Setup Domain</h1>
+	<p>Setting up a domain with Route 53</p>
+
+	<ol>
+		<li>Step 1: Obtain a Static URL
+			<ol>
+				<li>EC2 > Elastic IPs > Allocate New Address.</li>
+				<li>Note the new ip</li>
+				<li>Associate the new ip with an instance</li>
+				<li>Verify the new ip is working by typing in a browser</li>
+			</ol>	
+		</li>
+		<li>Step 2: Register a Domain Name
+			<ol>
+				<li>Go to Route 53 console view</li>
+				<li>Register Domain</li>
+				<li>Find domain you want</li>
+				<li>Enter contact details</li>
+				<li>Review agreement</li>
+				<li>Check email to confirm contact info.</li>
+			</ol>	
+		</li>
+
+		<li>Step 3: Configure DNS
+			<ol>
+				<li>Open hosted zones</li>
+				<li>Create Record Set button</li>
+				<li>On the right side of the window, enter www in the Name text box.</li>
+				<li>Enter the Elastic IP address you created in Value box and Create</li>
+				<li>Lower TTL for testing</li>
+				<li>Verify website is working</li>
+			</ol>		
+		</li>
+	</ol>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
