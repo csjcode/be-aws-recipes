@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>EC2 Wordpress Site</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">EC2 Wordpress Site</h1>
+	<p>Setting up Wordpress EC2</p>
+
+	<ol>
+		<li>Click Launch Instance</li>
+		<li>AWS Marketplace > WordPress powered by BitNami</li>
+		<li>Click through Next: Configure Instance Details.</li>
+		<li>On the Tag screen... enter Name in the Key box and WordPress in the Value box</li>
+		<li>Launch, Set SSH key</li>
+		<li>Find the Public IP and put it in the browser - you should get a Wordpress generic template page</li>
+		<li>To get the Wordpress install password: EC2 management console > WordPress instance > Actions button > Instance Setting > Get System Log</li>
+		<pre>
+19.787493] bitnami[1153]: #########################################################################
+[   19.796285] bitnami[1153]: #                                                                       #
+[   19.807423] bitnami[1153]: #        Setting Bitnami application password to '[password]'         #
+[   19.816236] bitnami[1153]: #        (the default application username is 'user')                   #
+[   19.821754] bitnami[1153]: #                                                                       #
+[   19.832077] bitnami[1153]: #########################################################################
+	</pre>
+	<li>Go back to your instance IP and add /admin - and then use the password to get into the Wordpress admin console with Username: user</li>
+	</ol>
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>	
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
