@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>EC2 Wordpress (Bitnami AMI) SSL Lets Encrypt</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">EC2 Wordpress (Bitnami AMI) SSL Lets Encrypt</h1>
+	<p>Setting up EC2 Wordpress (Bitnami AMI) SSL Lets Encrypt</p>
+
+	<ol>
+		<li>cd /tmp</li>
+		<li>curl -s https://api.github.com/repos/xenolf/lego/releases/latest | grep browser_download_url | grep linux_amd64 | cut -d '"' -f 4 | wget -i -</li>
+		<li>(IMPORTANT: replace X.Y.Z with the version of the latest file downloaded) tar xf lego_vX.Y.Z_linux_amd64.tar.xz</li>
+		<li>Turn off all Bitnami services: sudo /opt/bitnami/ctlscript.sh stop</li>
+		<li>sudo lego --email="EMAIL-ADDRESS" --domains="DOMAIN" --path="/etc/lego" run</li>
+		<li>A set of certificates will now be generated in the /etc/lego/certificates directory.</li>
+		<li>sudo mv /opt/bitnami/apache2/conf/server.crt /opt/bitnami/apache2/conf/server.crt.old</li>
+		<li>sudo mv /opt/bitnami/apache2/conf/server.key /opt/bitnami/apache2/conf/server.key.old</li>
+		<li>sudo mv /opt/bitnami/apache2/conf/server.csr /opt/bitnami/apache2/conf/server.csr.old</li>
+		<li>sudo ln -s /etc/lego/certificates/DOMAIN.key /opt/bitnami/apache2/conf/server.key</li>
+		<li>sudo ln -s /etc/lego/certificates/DOMAIN.crt /opt/bitnami/apache2/conf/server.crt</li>
+		<li>sudo chown root:root /opt/bitnami/apache2/conf/server*</li>
+		<li>sudo chmod 600 /opt/bitnami/apache2/conf/server*</li>
+		<li>Restart all services: sudo /opt/bitnami/ctlscript.sh start</li>
+		<li>Verify website</li>
+		<h3>SSL Renewal</h3>
+		<li>sudo /opt/bitnami/ctlscript.sh stop</li>
+		<li>sudo lego --email="EMAIL-ADDRESS" --domains="DOMAIN" --path="/etc/lego" renew</li>
+		<li>sudo /opt/bitnami/ctlscript.sh start</li>
+		<h3>Create SSL Renew Script</h3>
+		<li>Create a script at /etc/lego/renew-certificate.sh </li>
+
+<pre>#!/bin/bash
+sudo /opt/bitnami/ctlscript.sh stop apache
+sudo /usr/local/bin/lego --email="EMAIL-ADDRESS" --domains="DOMAIN" --path="/etc/lego" renew
+sudo /opt/bitnami/ctlscript.sh start apache</pre>
+	</ol>
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
