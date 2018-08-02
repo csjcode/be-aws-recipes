@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>EC2 EFS Mount</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">EC2 EFS Mount</h1>
+	<p>Setting up EFS for EC2</p>
+
+	<ol>
+		<li>Go to EFS console: https://us-west-2.console.aws.amazon.com/efs/home?region=us-west-2#/firstrun</li>
+		<li>Click Create File SYstem</li>
+		<li>https://us-west-2.console.aws.amazon.com/efs/home?region=us-west-2#/wizard/1</li>
+		<li>Select Default VPC, keep eveything else as it is , Next Step</li>
+		<li>Give it a Name in the tags like efs-test</li>
+		<li>Review it and click Create File System</li>
+		<li>Allow a few minutes while Lifecycle State completes from Creating to Available (may take 5 min.)</li>
+		<li>Launch EC2 instance: https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Home:</li>
+		<li>Use Amazon Linux AMI with t2.micro > Configure</li>
+		<li>On Auto-assign IP change to Enable</li>
+		<li>Add name tag Name: EFS-TEST</li>
+		<li>Create a security group EFS-TEST-sg</li>
+		<li>Click REVIEW AND LAUNCH</li>
+		<li>View instance and Go into EFS-TEST-sg</li>
+		<li>Copy security group ID for EFS-TEST-sg (ie. sg-211c1a51)</li>
+		<li>Back to EFS console</li>
+		<li>Modify mount target by clicking on Manage File System access and add the EC2 sg we created > SAVE</li>
+		<li>EC2 Console: Go into EFS-TEST-sg and Add a sg rule for NFS inbound - CHANGE custom Source to the EFS-TEST-sg Group ID (ie. sg-211c1a51)</li>
+		<li>Recap: We've associated our EFS and EC2 with the same security group, now we can move to mounting</li>
+		<li>In the EFS console it gives us instructons-- however we are usng the Amazon Linux, so we do not have to install nfs-utils</li>
+		<li>We have to login, make a directory and mount the file system: SSH as ec2-user (for Amazon Linux AMI). </li>
+		<li>> sudo mkdir efs</li>
+		<li>[note: you will have ot change the DNS IP, check in the mount instructions and it;s pre-generated] > sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-2684c78f.efs.us-west-2.amazonaws.com:/ efs</li>
+<pre>
+[ec2-user@ip-172-31-24-219 ~]$ cd efs
+[ec2-user@ip-172-31-24-219 efs]$ touch test
+touch: cannot touch ‘test’: Permission denied
+[ec2-user@ip-172-31-24-219 efs]$ sudo touch test
+[ec2-user@ip-172-31-24-219 efs]$ vi test
+[ec2-user@ip-172-31-24-219 efs]$ sudo vi test
+[ec2-user@ip-172-31-24-219 efs]$ ls -al
+</pre>
+	</ol>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
