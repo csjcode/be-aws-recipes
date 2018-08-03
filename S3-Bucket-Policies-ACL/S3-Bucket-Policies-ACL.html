@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>S3 Bucket Policies ACL</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">S3 Bucket Policies ACL</h1>
+	<p>Setting up S3 Bucket Policies ACL</p>
+
+	<ol>
+		<li>Go to S3</li>
+		<li>Go to a bucket</li>
+		<li>Click on the Permissions tab</li>
+		<li>Check the ACL (access control list)</li>
+		<li>We can add accounts permissions, add bucket policy (JSON or use AWS policy generator), </li>
+		<li>Click AWS Policy Generator link under Bucket Policy tab page: https://awspolicygen.s3.amazonaws.com/policygen.html</li>
+		<li>Select S3 bucket policy in dropdown</li>
+		<li>We're going to creat full public acccess</li>
+		<li>Principal for everyone is *</li>
+		<li>You have fine-grained contol but for this example click All Actions</li>
+		<li>Put in bucket name</li>
+		<li>Click ADD STATEMENT</li>
+		<li>Click GENERATE POLICY</li>
+		<li>Copy and paste JSON into Bucket Policy space on the Bucket Policy Page</li>
+		<li>SAVE</li>
+		<li>Note: this is only applied at the BUCKET level, not the Object level - Object level is ACL</li>
+	</ol>
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>	
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
