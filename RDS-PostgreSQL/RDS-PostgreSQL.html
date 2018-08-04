@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>RDS PostgreSQL</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">RDS PostgreSQL</h1>
+	<p>Setting up RDS PostgreSQL</p>
+
+	<ol>
+		<li>Go to RDS console: https://us-west-2.console.aws.amazon.com/rds/home?region=us-west-2#launch-dbinstance:ct=GettingStarted:</li>
+		<li>Check Free Tier only and select PostgreSQL</li>
+<p>
+PostgreSQL: PostgreSQL is a powerful, open-source object-relational database system with a strong reputation of reliability, stability, and correctness.
+High reliability and stability in a variety of workloads.
+Advanced features to perform in high-volume environments.
+Vibrant open-source community that releases new features multiple times per year.
+Supports multiple extensions that add even more functionality to the database.
+The most Oracle-compatible open-source database.</p>
+		<li>Keep all above Settings as default.</li>
+		<li>Below in Settings, name the instance. ie. testPostgreSQL</li>
+		<li>Put in admin name (not "admin"): ie. administrator ... and password</li>
+		<li>Next page - VPC security groups keep as Create New Security Group</li>
+		<li>If there is an option check "publically available"</li>
+		<li>Put in a database name ie. sampledb</li>
+		<li>Keep same port (5432 usually) for "TCP/IP port the DB instance will use for application connections."</li>
+		<li>Scroll down and change backup retention period to zero</li>
+		<li>LAUNCH DB INSTANCE and CREATE DATABASE</li>
+		<li>Go to connect to DB: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.Connect.html</li>
+		<li>Download pgAdmin app: </li>
+		<li>Put in Name and on the Connection tab "hostname" ad the RDS endpoint: ie. [name].[number].us-west-2.rds.amazonaws.com</li>
+		<li>Should connect -- if problems then check to make sure instance is "publically accessible"</li>
+		<li>Check that sampledb database is in there.</li>
+
+	</ol>
+
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>	
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
