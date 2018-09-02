@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VPC-1-Public</title>
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+</style>
+<body>
+	
+<div class="container rounded" id="main">
+
+	<h1 class="title">VPC-1-Public</h1>
+	<p>Setting up VPC-1-Public</p>
+
+	<ol>
+		<li>Launch VPC https://console.aws.amazon.com/vpc/ > VPC with a Single Public Subnet</li>
+		<li>Keep default settings, and choose Create VPC.</li>
+		<li>Security Groups > Create Security Group.</li>
+		<li>WebServerSG security group created > </li>
+		<li>Addinbound rules: 
+			<li>Select HTTP from the Type list, and enter 0.0.0.0/0 in the Source field.</li>
+			<li>Choose Add another rule, then select HTTPS from the Type list, and enter 0.0.0.0/0 in the Source field.</li>
+			<li>Choose Add another rule, then select SSH (for Linux)</li>
+		</li>
+		<li>EC2: https://console.aws.amazon.com/ec2/ > Launch Instance.</li>
+		<li>Make sure Public IP is auto-assigned (setting on EC2 Launch page unser Subnet). If not go to SUbnets page and modify auto-assign there as it can be toggled and may be off by default in a new non-default subnet..</li>
+		<li>Configure Security Group > use security group above</li>
+		
+		<li>Launch</li>
+		<li>If you did not assign a public IPv4 address to your instance in step 5, you will not be able to connect to it over IPv4. Assign an Elastic IP address -- or change default subnet</li>
+		<li>SSH into EC2 instance with public ip - if no key pair, convert in PuttyGen. Log in</li>
+		<li> sudo yum update -y</li>
+		<li>sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2</li>
+		<li>sudo yum install -y httpd mariadb-server</li>
+		<li>sudo systemctl start httpd</li>
+	</ol>
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
